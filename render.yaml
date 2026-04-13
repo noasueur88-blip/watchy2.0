@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: discord-bot-panel
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 60
+    envVars:
+      - key: TOKEN
+        sync: false
+      - key: CLIENT_ID
+        sync: false
+      - key: CLIENT_SECRET
+        sync: false
+      - key: SECRET_KEY
+        generateValue: true
+      - key: REDIRECT_URI
+        sync: false
+      - key: OWNER_IDS
+        sync: false
+      - key: LOG_CHANNEL_ID
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
